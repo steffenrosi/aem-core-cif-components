@@ -1,0 +1,30 @@
+{
+    "name": "cif-components-minicart",
+    "version": "1.0.0",
+    "description": "AEM Core CIF Components - MiniCart",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "webpack"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/adobe/aem-core-cif-components.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/adobe/aem-core-cif-components/issues"
+    },
+    "homepage": "https://github.com/adobe/aem-core-cif-components#readme",
+    "dependencies": {
+        "cif-components-common": "0.0.1",
+        "cross-env": "5.0.5",
+        "webpack-node-externals": "^1.7.2"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.4.4",
+        "babel-loader": "^8.0.5",
+        "webpack": "^4.30.0"
+    }
+}

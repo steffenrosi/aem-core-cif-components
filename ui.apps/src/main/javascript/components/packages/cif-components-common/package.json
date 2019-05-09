@@ -1,0 +1,20 @@
+{
+    "name": "cif-components-common",
+    "version": "0.0.1",
+    "description": "AEM Core CIF Components common libraries",
+    "main": "src/index.js",
+    "license": "MIT",
+    "repository": "https://github.com/adobe/aem-core-cif-components",
+    "scripts": {
+        "build": "webpack"
+    },
+    "dependencies": {
+        "cross-env": "5.0.5"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.4.4",
+        "babel-loader": "^8.0.5",
+        "webpack": "^4.31.0",
+        "webpack-cli": "^3.3.2"
+    }
+}

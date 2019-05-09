@@ -1,0 +1,15 @@
+{
+    "name": "cif-components",
+    "version": "1.0.0",
+    "description": "AEM Core CIF Components client-side libraries",
+    "main": "index.js",
+    "repository": "https://github.com/adobe/aem-core-cif-components",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "build": "yarn workspaces run build"
+    },
+    "workspaces": [
+        "packages/*"
+    ]
+}
