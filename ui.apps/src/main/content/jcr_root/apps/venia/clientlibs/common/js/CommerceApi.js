@@ -107,6 +107,7 @@ window.CIF = window.CIF || {};
          * @returns {Promise<T>}
          */
         async getCart(id) {
+            console.log(`Getting cart ${id}`);
             return await this._get(endpoints.guestcarts.byId(id));
         }
 
@@ -150,7 +151,14 @@ window.CIF = window.CIF || {};
          * @param quoteId
          * @returns {Promise<*>}
          */
-        async postCartEntry(cartId, {sku, qty, quoteId}) {
+        async postCartEntry(cartId, entryData) {
+            if (!cartId) {
+                throw new Error('No cartId supplied');
+            }
+            if (!entryData) {
+                throw new Error('Cart entry data not supplied');
+            }
+
             const url = `${endpoints.guestcarts.addEntry(cartId)}`;
             const params = {
                 cartItem: {

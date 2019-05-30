@@ -28,7 +28,7 @@ let PageContext = (function (document) {
         let b = document.cookie.match(`(^|[^;]+)\\s*${cookieName}\\s*=\\s*([^;]+)`);
         return b ? b.pop() : "";
     };
-
+                                        
     function PageContext() {
         // define the pageMask that is displayed when the sides are open (minicart and nav)
         let pageMask = document.querySelector("button.mask__root");
