@@ -5,26 +5,28 @@ describe('PageContext unit tests', () => {
     };
     let expectedCookie = `cif.cart=${cartInfo.cartId}#${cartInfo.cartQuote}`;
 
+    beforeEach(() => {
+        // remove the cart cookie before each test
+        document.cookie =
+            'cif.cart=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    });
+
     it('tests the tests', () => {
-        assert.equal(true, true);
+        expect(true).to.be.true;
     });
 
     it('sets the cart information cookie', () => {
-        document.cookie =
-            'cif.cart=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
         let pageContext = new PageContext();
 
         pageContext.setCartInfoCookie(cartInfo);
-        assert.exists(document.cookie);
-        assert.equal(document.cookie, expectedCookie);
+        expect(document.cookie).to.exist;
+        expect(document.cookie).to.equal(expectedCookie);
     });
 
     it('reads the cart information from cookie', () => {
-        document.cookie =
-            'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
         document.cookie = expectedCookie;
 
         let pageContext = new PageContext();
-        assert.deepEqual(pageContext.cartInfo, cartInfo);
+        expect(pageContext.cartInfo).to.deep.equal(cartInfo);
     });
 });
