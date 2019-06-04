@@ -257,6 +257,11 @@
                         <exclude>**/css.txt</exclude>
                         <exclude>**/*.css</exclude>
                         <exclude>**/*.less</exclude>
+                        <!-- Javascript generated sources -->
+                        <exclude>**/*.map</exclude>
+                        <exclude>**/yarn.lock</exclude>
+                        <!-- Graphql queries -->
+                        <exclude>**/*.graphql</exclude>
                     </excludes>
                 </configuration>
                 <executions>
