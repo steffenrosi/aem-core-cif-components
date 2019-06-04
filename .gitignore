@@ -39,3 +39,8 @@ hs_err_pid*
 *.iml
 *.ipr
 *.iws
+
+# Javascript things
+node_modules
+dist/
+**/*.map
