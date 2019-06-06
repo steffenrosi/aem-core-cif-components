@@ -12,24 +12,21 @@
  *
  *
  ******************************************************************************/
-import React, {Component, useContext} from 'react';
-import Search from './search';
+import SearchResults from '../components/SearchResultsWrapper';
+import {
+    createCustomElement,
+    DOMModel,
+    byAttrVal
+} from '@adobe/react-webcomponent';
 
-import ApolloClient from 'apollo-boost';
-import {ApolloProvider} from 'react-apollo';
-import {ApolloContext} from 'react-apollo/ApolloContext';
+class SearchResultsModel extends DOMModel {
+    @byAttrVal() text = 'something';
+}
 
-const client = new ApolloClient({
-    uri: 'http://localhost/magento/graphql'
-});
-const App = () => {
-    return (
-        <ApolloContext.Provider value={client}>
-            <ApolloProvider client={client}>
-                <Search />
-            </ApolloProvider>
-        </ApolloContext.Provider>
-    );
-};
+const SearchResultsCustomElement = createCustomElement(
+    SearchResults,
+    SearchResultsModel,
+    'container'
+);
 
-export default App;
+window.customElements.define('search-results', SearchResultsCustomElement);

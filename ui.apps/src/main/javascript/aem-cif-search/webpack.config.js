@@ -17,11 +17,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const baseComponentsPath = `${__dirname}/../../content/jcr_root/apps/venia/components/commerce`;
 module.exports = {
     entry: {
-        search: ['./src/search-component.js']
+        search: ['./src/webcomponents/search-component.js'],
+        searchresults: ['./src/webcomponents/search-results-component.js']
     },
     // output: {
     //     path: `${__dirname}/dist`,
-    //     filename: 'main.js'
+    //     filename: 'main-[name].js'
     // },
     output: {
         path: `${baseComponentsPath}`,

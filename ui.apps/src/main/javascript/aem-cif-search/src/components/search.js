@@ -12,7 +12,7 @@
  *
  *
  ******************************************************************************/
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import PRODUCT_SEARCH from './queries/ProductSearch.graphql';
 
 import {useQuery} from '@magento/peregrine';
@@ -54,7 +54,12 @@ const Search = () => {
     return (
         <div className="searchBar__root_open searchBar__root">
             <div className="searchBar__searchInner">
-                <form className="searchBar__form">
+                <form
+                    className="searchBar__form"
+                    onSubmit={event => {
+                        event.preventDefault();
+                        window.location.href = `/content/venia/language-masters/en/search.html?q=${searchTerm}`;
+                    }}>
                     <span className="fieldIcons__root">
                         <span className="fieldIcons__input" style={style}>
                             <input

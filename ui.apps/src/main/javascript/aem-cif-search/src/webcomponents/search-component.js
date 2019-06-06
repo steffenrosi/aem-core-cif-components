@@ -12,7 +12,7 @@
  *
  *
  ******************************************************************************/
-import Search from '../src/App';
+import Search from '../components/SearchWrapper';
 import {
     createCustomElement,
     DOMModel,
