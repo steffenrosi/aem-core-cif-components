@@ -12,30 +12,19 @@
  *
  *
  ******************************************************************************/
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
-import {useQuery} from '@magento/peregrine';
+import {useQuery, useSearchParam} from '@magento/peregrine';
 
 import PRODUCT_SEARCH from './queries/ProductSearch.graphql';
 
-function extractQueryParam(queryString) {
-    const params = queryString.split('&');
-    const query = params.find(item => item.startsWith('q='));
-    if (!query) {
-        return '';
-    }
-    let variables = query.split('=');
-    return variables.length > 0 && variables[1];
-}
-
 const SearchResults = () => {
-    const queryString = window.location.search;
+    let [queryParam, setValue] = useState('');
+    useSearchParam({location: window.location, parameter: 'q', setValue});
+
     let message = '';
-    let queryParam = '';
-    if (queryString.length === 0) {
+    if (!queryParam) {
         message = `No query string, no results for you`;
-    } else {
-        queryParam = extractQueryParam(queryString.substring(1));
     }
 
     const [queryResult, queryApi] = useQuery(PRODUCT_SEARCH);
@@ -53,10 +42,12 @@ const SearchResults = () => {
     return (
         <div>
             {message}
+            {loading && <p>Loading...</p>}
             {data && (
                 <ul>
                     {data.products.items.map(item => {
                         console.log(`found`);
+                        console.log(data.products);
                         return <li key={item.id}>{item.name}</li>;
                     })}
                 </ul>
