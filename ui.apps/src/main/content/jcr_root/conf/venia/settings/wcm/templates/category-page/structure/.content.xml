@@ -39,6 +39,8 @@
                     skipNavigationRoot="true"
                     sling:resourceType="venia/components/structure/navigation/v1/navigation"
                     structureDepth="2"/>
+                <search jcr:primaryType="nt:unstructured"
+                        sling:resourceType="venia/components/commerce/search/v1/search"/>
                 <minicart jcr:primaryType="nt:unstructured"
                           sling:resourceType="venia/components/commerce/minicart/v1/minicart"/>
             </header>

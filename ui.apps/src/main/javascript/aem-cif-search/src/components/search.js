@@ -12,7 +12,12 @@
  *
  *
  ******************************************************************************/
-import React, {useState, useEffect, useCallback} from 'react';
+
+/**
+ * This component renders a search box powered by the Magento Peregrine hooks.
+ * Although this component does perform a search, it does that for the "Autosuggestions" list (not included here)
+ */
+import React, {useState, useEffect} from 'react';
 import PRODUCT_SEARCH from './queries/ProductSearch.graphql';
 
 import {useQuery} from '@magento/peregrine';
@@ -99,16 +104,6 @@ const Search = () => {
                     </span>
                     {message && <p className="message__root">{message}</p>}
                 </form>
-            </div>
-            <div className="results">
-                {data && (
-                    <ul>
-                        {data.products.items.map(item => {
-                            console.log(`found`);
-                            return <li key={item.id}>{item.name}</li>;
-                        })}
-                    </ul>
-                )}
             </div>
         </div>
     );
