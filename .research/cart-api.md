@@ -1,7 +1,8 @@
 # LUMA API
 
 ## General
-* `form_key` is be retrieved from cookie, after requesting a store page or cart.
+* `form_key` has to be manually generated (see https://github.com/magento/magento2/blob/2.2-develop/app/code/Magento/PageCache/view/frontend/web/js/page-cache.js#L102-L125) and added to the `form_key` cookie.
+* Response messages are stored in `mage-messages` cookie by Magento.
 * Some requests use a `uenc` value, please check https://maxchadwick.xyz/blog/wtf-is-uenc.
     * Base64 encoded product path.
     * Can be retrieved in GraphQL via `canonical_url` attribute.
@@ -24,7 +25,7 @@ qty: 1
 ```
 
 ## Get Cart
-> GET /index.php/customer/section/load/?sections=cart%2Cmessages&force_new_section_timestamp=true&_=1560770536636
+> GET /index.php/customer/section/load/?sections=cart&force_new_section_timestamp=true&_=1560770536636
 
 ### Parameters
 ```yaml
