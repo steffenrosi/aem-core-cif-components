@@ -12,19 +12,19 @@
  *
  ******************************************************************************/
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
+import UserContextProvider from '../../context/UserContext';
 
-import { CommerceApp, Cart, AuthBar } from './components';
-
-const App = () => {
+const CommerceApp = props => {
+    const client = new ApolloClient({
+        uri: '/magento/graphql'
+    });
     return (
-        <CommerceApp>
-            <Cart />
-        </CommerceApp>
+        <ApolloProvider client={client}>
+            <UserContextProvider>{props.children}</UserContextProvider>
+        </ApolloProvider>
     );
 };
 
-window.onload = function() {
-    const element = document.getElementById('minicart');
-    ReactDOM.render(<App />, element);
-};
+export default CommerceApp;

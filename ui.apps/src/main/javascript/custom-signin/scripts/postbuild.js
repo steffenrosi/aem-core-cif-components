@@ -11,20 +11,15 @@
  *    governing permissions and limitations under the License.
  *
  ******************************************************************************/
-import React from 'react';
-import ReactDOM from 'react-dom';
 
-import { CommerceApp, Cart, AuthBar } from './components';
+const { exec } = require('child_process');
 
-const App = () => {
-    return (
-        <CommerceApp>
-            <Cart />
-        </CommerceApp>
-    );
-};
+const CLIENTLIB_PATH = '../../content/jcr_root/apps/core/cif/components/content/myaccount/v1/myaccount/clientlib';
 
-window.onload = function() {
-    const element = document.getElementById('minicart');
-    ReactDOM.render(<App />, element);
-};
+exec(`repo put -f ${CLIENTLIB_PATH}`, (err, stdout, stderr) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log(`stdout: ${stdout}`);
+    }
+});

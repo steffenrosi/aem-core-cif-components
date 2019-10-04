@@ -11,20 +11,8 @@
  *    governing permissions and limitations under the License.
  *
  ******************************************************************************/
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-import { CommerceApp, Cart, AuthBar } from './components';
-
-const App = () => {
-    return (
-        <CommerceApp>
-            <Cart />
-        </CommerceApp>
-    );
-};
-
-window.onload = function() {
-    const element = document.getElementById('minicart');
-    ReactDOM.render(<App />, element);
-};
+export { default as CommerceApp } from './CommerceApp';
+export { default as SignIn } from './SignIn';
+export { default as Cart } from './Minicart';
+export { default as AuthBar } from './AuthBar';
+export { default as MyAccount } from './MyAccount';

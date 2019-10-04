@@ -13,19 +13,21 @@
  ******************************************************************************/
 import React from 'react';
 import { Form } from 'informed';
-import { func } from 'prop-types';
+import { func, object } from 'prop-types';
 
 import { isRequired } from '../../utils/formValidators';
 import Button from '../Button';
 import Field from '../Field';
 import TextInput from '../TextInput';
 
-import classes from './signIn.css';
+import defaultClasses from './signIn.css';
 import { useSignin } from './useSignin';
 
 const SignIn = props => {
     const { showMyAccount } = props;
     const { errorMessage, isSignedIn, handleSubmit } = useSignin();
+
+    let classes = props.classes ? Object.assign({}, defaultClasses, props.classes) : defaultClasses;
 
     if (isSignedIn) {
         showMyAccount();
@@ -58,7 +60,8 @@ const SignIn = props => {
 };
 
 SignIn.propTypes = {
-    showMyAccount: func.isRequired
+    showMyAccount: func.isRequired,
+    classes: object
 };
 
 export default SignIn;
