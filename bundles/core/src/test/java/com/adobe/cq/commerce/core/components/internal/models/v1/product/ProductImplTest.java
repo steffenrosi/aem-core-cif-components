@@ -34,6 +34,8 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.mockito.internal.util.reflection.Whitebox;
 
+import com.adobe.cq.commerce.core.components.internal.models.v1.customization.MyProduct;
+import com.adobe.cq.commerce.core.components.internal.models.v1.customization.MyProductImpl;
 import com.adobe.cq.commerce.core.components.models.product.Asset;
 import com.adobe.cq.commerce.core.components.models.product.Variant;
 import com.adobe.cq.commerce.core.components.models.product.VariantAttribute;
@@ -93,7 +95,7 @@ public class ProductImplTest {
         productResource = Mockito.spy(context.resourceResolver().getResource(PRODUCT));
 
         String json = getResource("/graphql/magento-graphql-product-result.json");
-        Query rootQuery = QueryDeserializer.getGson().fromJson(json, Query.class);
+        Query rootQuery = QueryDeserializer.getCustomGson().fromJson(json, Query.class);
         product = rootQuery.getProducts().getItems().get(0);
         storeConfig = rootQuery.getStoreConfig();
 
@@ -295,6 +297,19 @@ public class ProductImplTest {
         storeConfig = rootQuery.getStoreConfig();
 
         testProduct(product, false);
+    }
+
+    @Test
+    public void testMyProduct() {
+        MyProduct myProductModel = context.request().adaptTo(MyProductImpl.class);
+
+        Assert.assertTrue(myProductModel.getFound());
+        Assert.assertEquals(product.getSku(), myProductModel.getSku());
+        Assert.assertEquals(product.getName(), myProductModel.getName());
+        Assert.assertEquals(product.getDescription().getHtml(), myProductModel.getDescription());
+
+        Assert.assertEquals("Some activity", myProductModel.getActivity());
+        Assert.assertEquals("Some category gear", myProductModel.getCategoryGear());
     }
 
     private String getResource(String filename) throws IOException {

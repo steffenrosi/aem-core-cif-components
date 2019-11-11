@@ -60,20 +60,38 @@ public class MagentoGraphqlClient {
      */
     public static MagentoGraphqlClient create(Resource resource) {
         try {
-            return new MagentoGraphqlClient(resource);
+            return new MagentoGraphqlClient(resource, false);
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
             return null;
         }
     }
 
-    private MagentoGraphqlClient(Resource resource) {
+    /**
+     * Instantiates and returns a new MagentoGraphqlClient.
+     * This method returns <code>null</code> if the client cannot be instantiated.
+     * 
+     * @param resource The JCR resource to use to adapt to the lower-level {@link GraphqlClient}.
+     * @param ignoreUnknownFields If true, the deserializer will ignore unknown fields in the JSON response.
+     * @return A new MagentoGraphqlClient instance.
+     */
+    public static MagentoGraphqlClient create(Resource resource, boolean ignoreUnknownFields) {
+        try {
+            return new MagentoGraphqlClient(resource, ignoreUnknownFields);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+            return null;
+        }
+    }
+
+    private MagentoGraphqlClient(Resource resource, boolean ignoreUnknownFields) {
         graphqlClient = resource.adaptTo(GraphqlClient.class);
         if (graphqlClient == null) {
             throw new RuntimeException("GraphQL client not available for resource " + resource.getPath());
         }
 
-        requestOptions = new RequestOptions().withGson(QueryDeserializer.getGson());
+        requestOptions = new RequestOptions().withGson(ignoreUnknownFields ? QueryDeserializer.getCustomGson()
+            : QueryDeserializer.getGson());
 
         InheritanceValueMap properties;
         Page page = resource.getResourceResolver().adaptTo(PageManager.class).getContainingPage(resource);

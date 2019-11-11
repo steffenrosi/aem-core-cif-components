@@ -3,6 +3,8 @@
     "items": [
       {
         "__typename": "ConfigurableProduct",
+        "activity": "Some activity",
+        "category_gear": "Some category gear",
         "sku": "MJ01",
         "name": "Beaumont Summit Kit",
         "description": {

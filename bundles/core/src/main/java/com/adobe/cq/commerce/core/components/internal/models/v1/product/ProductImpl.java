@@ -108,8 +108,12 @@ public class ProductImpl implements Product {
         String slug = parseProductSlug();
 
         if (StringUtils.isNotBlank(slug)) {
+
+            // If the resource type is something else than the core component, it's an extended model
+            boolean isBaseModel = resource.getResourceType().equals(RESOURCE_TYPE);
+
             // Get MagentoGraphqlClient from the resource.
-            MagentoGraphqlClient magentoGraphqlClient = MagentoGraphqlClient.create(resource);
+            MagentoGraphqlClient magentoGraphqlClient = MagentoGraphqlClient.create(resource, !isBaseModel);
             productRetriever = new ProductRetrieverImpl(magentoGraphqlClient);
             productRetriever.setSlug(slug);
             loadClientPrice = properties.get(PN_LOAD_CLIENT_PRICE, currentStyle.get(PN_LOAD_CLIENT_PRICE, LOAD_CLIENT_PRICE_DEFAULT));
