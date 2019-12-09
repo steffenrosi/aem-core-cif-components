@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <!-- ====================================================================== -->
     <!-- P A R E N T  P R O J E C T  D E S C R I P T I O N                      -->
@@ -37,67 +38,63 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.8.0</version>
                 <executions>
                     <execution>
-                        <id>npm-install</id>
-                        <phase>generate-resources</phase>
+                        <id>install node and npm</id>
                         <goals>
-                            <goal>exec</goal>
+                            <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <executable>npm</executable>
-                            <workingDirectory>${basedir}/src/main/javascript</workingDirectory>
-                            <arguments>
-                                <argument>install</argument>
-                            </arguments>
+                            <nodeVersion>v12.13.0</nodeVersion>
+                            <npmVersion>6.12.0</npmVersion>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>npm-webpack-build</id>
-                        <phase>generate-resources</phase>
+                        <id>npm install</id>
                         <goals>
-                            <goal>exec</goal>
+                            <goal>
+                                npm
+                            </goal>
                         </goals>
                         <configuration>
-                            <executable>npm</executable>
-                            <arguments>
-                                <argument>run</argument>
-                                <argument>build</argument>
-                            </arguments>
+                            <arguments>install</arguments>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>npm-module-link</id>
-                        <phase>generate-resources</phase>
+                        <id>npm run build</id>
                         <goals>
-                            <goal>exec</goal>
+                            <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <executable>npm</executable>
-                            <arguments>
-                                <argument>link</argument>
-                            </arguments>
+                            <arguments>run build</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm link</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>link</arguments>
                         </configuration>
                     </execution>
                     <execution>
                         <id>npm-module-publish</id>
                         <phase>deploy</phase>
                         <goals>
-                            <goal>exec</goal>
+                            <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <executable>npm</executable>
                             <arguments>
-                                <argument>publish</argument>
+                                publish
                             </arguments>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
 
     </build>
