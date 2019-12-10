@@ -10,6 +10,8 @@ executors:
 
 jobs:
   build:
+    environment:
+      - MAVEN_OPTS: -Xmx512m
     executor: cif_executor
     steps:
       - checkout
