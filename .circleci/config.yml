@@ -27,7 +27,7 @@ jobs:
           command: |
             java -version
             mvn -v
-            mvn -B clean install
+            mvn -B clean install -Drat.skip=true
       - save_cache:
           paths:
             - ~/.m2
