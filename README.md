@@ -72,7 +72,7 @@ Here is a full [video walk-through of the setup process](https://www.adobe.io/ap
 
 ### Easy install with the "all" package
 
-If you want to build all the modules yourself and get all the latest (yet) **unreleased** changes, just build and install all the modules with the following command at the root of the repository (see "Building and installing from source" below for more details):
+If you want to build all the modules yourself and get all the latest (yet) **unreleased** changes, just build and install all the modules with the following command at the root of the repository:
 
 ```
 mvn clean install -PautoInstallAll
